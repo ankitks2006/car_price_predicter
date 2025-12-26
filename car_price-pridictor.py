@@ -2,9 +2,15 @@ import pandas as pd
 import numpy as np
 import pickle as pk
 import streamlit as st
-model=pk.load(open('/home/basant/airwriting/car_price/model.pkl','rb'))
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(BASE_DIR, "model.pkl")
+data_path = os.path.join(BASE_DIR, "Cardetails.csv")
+model=pk.load(open('model.pkl','rb'))
 st.header(' 🚗 car price pridiction ml model')
-dataset = pd.read_csv('Cardetails.csv')
+dataset = pd.read_csv(data_path)
 
 def get_brand_name(car_name):
   car_name = car_name.split(' ')[0]
